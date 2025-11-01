@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-pink-50 via-white to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900;
+    @apply text-gray-900 dark:text-gray-100;
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700;
+    @apply text-white font-medium px-6 py-3 rounded-xl;
+    @apply transition-all duration-300 transform hover:scale-105;
+    @apply shadow-lg hover:shadow-xl;
+  }
+
+  .btn-secondary {
+    @apply bg-white dark:bg-gray-800 text-pink-600 dark:text-pink-400;
+    @apply border-2 border-pink-300 dark:border-pink-700;
+    @apply font-medium px-6 py-3 rounded-xl;
+    @apply transition-all duration-300 transform hover:scale-105;
+    @apply hover:bg-pink-50 dark:hover:bg-gray-700;
+  }
+
+  .card {
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-lg;
+    @apply border border-pink-100 dark:border-gray-700;
+    @apply transition-all duration-300 hover:shadow-xl;
+    @apply p-6;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl;
+    @apply bg-white dark:bg-gray-700;
+    @apply border-2 border-pink-200 dark:border-gray-600;
+    @apply focus:border-pink-500 dark:focus:border-pink-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-pink-300 dark:focus:ring-pink-600;
+    @apply transition-all duration-300;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+    @apply transition-all duration-300 hover:scale-110;
+  }
+
+  .badge-easy {
+    @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200;
+  }
+
+  .badge-medium {
+    @apply bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200;
+  }
+
+  .badge-hard {
+    @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200;
+  }
+
+  .tag-chip {
+    @apply bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-200;
+    @apply px-3 py-1 rounded-full text-sm font-medium;
+    @apply transition-all duration-300 hover:bg-pink-200 dark:hover:bg-pink-800;
+    @apply cursor-pointer;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-pink-50 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-pink-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-pink-400 dark:bg-gray-500;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-pink-500 to-pink-700 bg-clip-text text-transparent;
+}
