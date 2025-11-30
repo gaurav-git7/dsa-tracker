@@ -1,53 +1,38 @@
-import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
-import './globals.css';
-import { Toaster } from 'react-hot-toast';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import AuthGuard from "@/components/AuthGuard";
+import { Providers } from "./providers";
+import dynamic from "next/dynamic";
 
-const poppins = Poppins({ 
-  weight: ['300', '400', '500', '600', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'DSA Progress Tracker ❤️',
-  description: 'Track LeetCode progress together - Gaurav & Her Name',
+  title: "DSA Tracker",
+  description: "Track your Data Structures and Algorithms progress",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const DynamicCustomStarfieldBackground = dynamic(
+  () => import("@/components/CustomStarfieldBackground"),
+  { ssr: false }
+);
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={poppins.className}>
-      <body className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1 container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-          {children}
-        </main>
-        <Footer />
-        <Toaster 
-          position="top-right"
-          toastOptions={{
-            duration: 3000,
-            style: {
-              background: '#fce7f3',
-              color: '#be185d',
-              borderRadius: '12px',
-              padding: '16px',
-              fontWeight: '500',
-            },
-            success: {
-              iconTheme: {
-                primary: '#ec4899',
-                secondary: '#fff',
-              },
-            },
-          }}
-        />
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <Providers>
+          <AuthGuard>
+            <Navbar />
+            <div className="min-h-screen pt-16 pb-10 relative z-10">
+              {children}
+            </div>
+            <Footer />
+          </AuthGuard>
+          <DynamicCustomStarfieldBackground />
+        </Providers>
       </body>
     </html>
   );
